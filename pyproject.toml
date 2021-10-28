@@ -8,6 +8,7 @@ authors = ["Your Name <you@example.com>"]
 python = "^3.9"
 openai = "^0.10.5"
 requests = "^2.26.0"
+tweepy = "^4.1.0"
 
 [tool.poetry.dev-dependencies]
 
