@@ -16,7 +16,6 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 
 TWITTER_API_KEY = os.environ.get("TWITTER_API_KEY")
 TWITTER_API_SECRET = os.environ.get("TWITTER_API_SECRET")
-TWITTER_BEARER_TOKEN = os.environ.get("TWITTER_BEARER_TOKEN")
 TWITTER_ACCESS_TOKEN = os.environ.get("TWITTER_ACCESS_TOKEN")
 TWITTER_ACCESS_SECRET = os.environ.get("TWITTER_ACCESS_SECRET")
 
@@ -30,10 +29,15 @@ prompts = [
     "What's the best feeling on Earth?",
     "What's a wholesome saying?",
     "The most important thing?",
-    # "",
+    "Nothing delights the mind as much as",
     "You can avoid a lot of drama by simply",
     "Frightened of change?",
     "You are not defined by",
+    "You will earn the respect of everyone if you begin by",
+    "It is not because things are difficult that we do not dare; it is because we",
+    "Devote the rest of your life to",
+    "Value your time more than your",
+    "Wealth consists not in having great possesions, but in",
 ]
 
 
