@@ -64,10 +64,7 @@ def tweet_random_message(dry_run=True):
     random_message = random_prompt + random_completetion
     shortened_random_message = get_first_two_sentences(random_message)
 
-    if not dry_run:
-        tweet(shortened_random_message)
-    else:
-        print(shortened_random_message)
+    tweet(shortened_random_message)
 
 
 def get_first_two_sentences(string):
@@ -84,4 +81,4 @@ def get_first_two_sentences(string):
 
 
 if __name__ == "__main__":
-    tweet_random_message(dry_run=False)
+    tweet_random_message()
