@@ -47,8 +47,6 @@ def tweet(message):
 def tweet_random_message(dry_run=True):
     random_prompt = prompts[random.randint(0, len(prompts) - 1)]
 
-    logging.info("Picked random prompt: %s", random_prompt)
-
     response = openai.Completion.create(
         engine="davinci",
         prompt=random_prompt,
@@ -59,8 +57,6 @@ def tweet_random_message(dry_run=True):
         frequency_penalty=0.1,
     )
 
-    logging.info("Successfully queried GPT-3")
-
     random_completetion = response.choices[
         random.randint(0, len(response.choices) - 1)
     ]["text"]
@@ -69,9 +65,7 @@ def tweet_random_message(dry_run=True):
     shortened_random_message = get_first_two_sentences(random_message)
 
     if not dry_run:
-        logging.info("Tweeting: %s", shortened_random_message)
         tweet(shortened_random_message)
-        logging.info("Successfully tweeted!")
     else:
         print(shortened_random_message)
 
