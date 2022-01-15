@@ -1,4 +1,5 @@
-FROM python:3.9-slim
-COPY main.py requirements.txt /
-RUN pip install -r requirements.txt
-CMD [ "python", "main.py" ]
+FROM pytorch/pytorch:latest
+COPY requirements.txt /
+RUN pip install -r /requirements.txt
+COPY main.py models.py my_gpt.pt /
+CMD [ "python", "/main.py" ]

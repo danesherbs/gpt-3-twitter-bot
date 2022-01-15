@@ -1,18 +1,8 @@
 import os
 import random
-import openai
 import tweepy
-import logging
+import models
 
-
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s %(message)s",
-    datefmt="%Y-%m-%d %H:%M:%S",
-    filename="main.log",
-)
-
-openai.api_key = os.getenv("OPENAI_API_KEY")
 
 TWITTER_API_KEY = os.environ.get("TWITTER_API_KEY")
 TWITTER_API_SECRET = os.environ.get("TWITTER_API_SECRET")
@@ -50,39 +40,13 @@ def tweet(message):
 
 def tweet_random_message(dry_run=True):
     random_prompt = prompts[random.randint(0, len(prompts) - 1)]
+    [random_completion] = models.my_gpt.generate(random_prompt, max_length=220)
 
-    response = openai.Completion.create(
-        engine="davinci",
-        prompt=random_prompt,
-        max_tokens=40,
-        n=1,
-        best_of=100,
-        temperature=1,
-        frequency_penalty=0.1,
-    )
+    if not dry_run:
+        tweet(random_completion)
 
-    random_completetion = response.choices[
-        random.randint(0, len(response.choices) - 1)
-    ]["text"]
-
-    random_message = random_prompt + random_completetion
-    shortened_random_message = get_first_two_sentences(random_message)
-
-    tweet(shortened_random_message)
-
-
-def get_first_two_sentences(string):
-    if len(string) == 0:
-        return string
-
-    string = string[0].upper() + string[1:]
-    sentences = string.split(".")
-
-    if len(sentences) < 2:
-        return string
-
-    return sentences[0] + "." + sentences[1] + "."
+    print(random_completion)
 
 
 if __name__ == "__main__":
-    tweet_random_message()
+    tweet_random_message(dry_run=False)

@@ -1,2 +1,4 @@
-openai
 tweepy
+torchtyping
+einops
+transformers
