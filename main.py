@@ -40,7 +40,7 @@ def tweet(message):
 
 def tweet_random_message(dry_run=True):
     random_prompt = prompts[random.randint(0, len(prompts) - 1)]
-    [random_completion] = models.my_gpt.generate(random_prompt, max_length=180)
+    [random_completion] = models.my_gpt.generate(random_prompt, max_length=100)
 
     if not dry_run:
         tweet(random_completion)
