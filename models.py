@@ -150,11 +150,12 @@ class GPT2(torch.nn.Module):
         while seq_len < max_length:
             output_logits = self.next_token(output_ids, temperature, freq_penalty)
             next_token_id = torch.argmax(output_logits, dim=-1, keepdim=True)
-            output_ids = torch.cat([output_ids, next_token_id], dim=-1)
-            seq_len = output_ids.shape[1]
 
             if next_token_id == self.tokenizer.eos_token_id:
-                break  # reached end of sentence
+                break  # don't include end of text token
+
+            output_ids = torch.cat([output_ids, next_token_id], dim=-1)
+            seq_len = output_ids.shape[1]
 
         return self.tokenizer.batch_decode(output_ids)
 
